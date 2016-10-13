@@ -32,71 +32,32 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
 
-/**
- * This OpMode uses the common HardwareK9bot class to define the devices on the robot.
- * All device access is managed through the HardwareK9bot class. (See this class for device names)
- * The code is structured as a LinearOpMode
- *
- * This particular OpMode executes a basic Tank Drive Teleop for the K9 bot
- * It raises and lowers the arm using the Gampad Y and A buttons respectively.
- * It also opens and closes the claw slowly using the X and B buttons.
- *
- * Note: the configuration of the servos is such that
- * as the arm servo approaches 0, the arm position moves up (away from the floor).
- * Also, as the claw servo approaches 0, the claw opens up (drops the game element).
- *
- * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
- */
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name="TestDrive", group="Test")
+public class Test11442 extends OpMode {
 
-public class Test11442 extends LinearOpMode {
 
-    /* Declare OpMode members. */
-    HardwareTest robot           = new HardwareTest();              // Use a K9'shardware
+    HardwareTest robot       = new HardwareTest();
 
+    double left;
+    double right;
 
     @Override
-    public void runOpMode() throws InterruptedException {
-        double left;
-        double right;
-
-        /* Initialize the hardware variables.
-         * The init() method of the hardware class does all the work here
-         */
+    public void init() {
         robot.init(hardwareMap);
+    }
+    @Override
+    public void loop() {
 
-        // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Hello Driver");    //
-        telemetry.update();
+        left = gamepad1.left_stick_y;
+        right = gamepad1.right_stick_y;
 
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
+        robot.leftMotor.setPower(left);
+        robot.rightMotor.setPower(right);
 
-        // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-
-            // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
-            left = -gamepad1.left_stick_y;
-            right = -gamepad1.right_stick_y;
-            robot.leftMotor.setPower(left);
-            robot.rightMotor.setPower(right);
-
-
-            telemetry.addData("left",  "%.2f", left);
-            telemetry.addData("right", "%.2f", right);
-            telemetry.update();
-
-            // Pause for metronome tick.  40 mS each cycle = update 25 times a second.
-            robot.waitForTick(40);
-            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-        }
     }
 }
 
