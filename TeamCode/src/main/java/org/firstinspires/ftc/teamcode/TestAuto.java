@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -8,11 +9,17 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  *
  */
 
-@TeleOp(name = "Concept: Test Teleop", group = "Concept")
+@Autonomous(name = "Concept: TestAuto", group = "Concept")
 
-public class testTeleop extends OpMode {
+public class TestAuto extends OpMode {
+
+    HardwareTest robot       = new HardwareTest();
+
     @Override
     public void init() {
+
+
+
 
     }
 

@@ -23,21 +23,18 @@ public class testAutonomous extends OpMode {
     public void init_loop() {
     }
 
-    /*
-     * This method will be called ONCE when start is pressed
-     * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
-     */
+
     @Override
     public void start() {
         runtime.reset();
     }
 
-    /*
-     * This method will be called repeatedly in a loop
-     * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
-     */
+
+
     @Override
     public void loop() {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
     }
+
+
 }
