@@ -57,8 +57,8 @@ public class Test11442 extends OpMode {
         float throttle = gamepad1.left_stick_y;
         float direction = -gamepad1.right_stick_x;
 
-        float right = throttle + direction;
-        float left = throttle - direction;
+        float right = throttle - direction;
+        float left = throttle + direction;
 
 
         right = Range.clip(right, -1, 1);
@@ -71,6 +71,18 @@ public class Test11442 extends OpMode {
 
         robot.rightMotor.setPower(right);
         robot.leftMotor.setPower(left);
+
+        float arm;
+
+
+        arm = throttle - direction;
+
+        arm = Range.clip(arm, -1, 1);
+
+        arm = (float) scaleInput(arm);
+
+        robot.slide.setPower(arm);
+
 
     }
 
