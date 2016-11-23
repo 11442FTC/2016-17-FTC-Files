@@ -73,14 +73,9 @@ public class Test11442 extends OpMode {
         robot.leftMotor.setPower(left);
 
         float arm;
-
-
         arm = throttle - direction;
-
         arm = Range.clip(arm, -1, 1);
-
         arm = (float) scaleInput(arm);
-
         robot.slide.setPower(arm);
 
 
@@ -109,7 +104,6 @@ public class Test11442 extends OpMode {
         } else {
             dScale = scaleArray[index];
         }
-
 
         return dScale;
     }

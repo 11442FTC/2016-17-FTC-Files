@@ -26,7 +26,6 @@ public class BB11442 extends OpMode {
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
 
-
         }
 
     }
