@@ -16,6 +16,8 @@ public class BBHardware{
     public DcMotor  rightMotor  = null;
     public DcMotor  lift        = null;
     public DcMotor  spin        = null;
+    public DcMotor  leftb       = null;
+    public DcMotor  rightb      = null;
 
 
 
@@ -40,10 +42,17 @@ public class BBHardware{
         lift = hwMap.dcMotor.get("lift");
         spin = hwMap.dcMotor.get("spin");
 
+        leftb   = hwMap.dcMotor.get("leftb");
+        rightb  = hwMap.dcMotor.get("rightb");
+        leftb.setDirection(DcMotor.Direction.REVERSE);
+
+
         leftMotor.setPower(0);
         rightMotor.setPower(0);
         lift.setPower(0);
         spin.setPower(0);
+        leftb.setPower(0);
+        rightb.setPower(0);
 
 
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

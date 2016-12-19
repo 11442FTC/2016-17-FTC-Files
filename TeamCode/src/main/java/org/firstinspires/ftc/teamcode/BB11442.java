@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class BB11442 extends OpMode {
 
 
-    BBHardware robot       = new BBHardware();
+    BBHardware robot = new BBHardware();
 
     double left;
     double right;
@@ -18,6 +18,7 @@ public class BB11442 extends OpMode {
     public void init() {
         robot.init(hardwareMap);
     }
+
     @Override
     public void loop() {
 
@@ -42,12 +43,24 @@ public class BB11442 extends OpMode {
         if (!robot.lift.isBusy()) {
             robot.lift.setPower(0);
         }
+
         if (gamepad2.a) {
-        robot.spin.setPower(0.75);
+            robot.spin.setPower(0.75);
         }
-        if(gamepad2.x);
-        robot.spin.setPower(0);
+        if (gamepad2.x) {
+            robot.spin.setPower(0);
         }
+
+        if (gamepad2.dpad_up) {
+            robot.leftb.setPower(1);
+            robot.rightb.setPower(1);
+        }
+
+        if (gamepad2.dpad_down) {
+            robot.leftb.setPower(0);
+            robot.rightb.setPower(0);
+        }
+
 
     }
-
+}
