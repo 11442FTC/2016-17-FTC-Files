@@ -39,7 +39,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class AutoEncoderTest extends LinearOpMode {
 
     /* Declare OpMode members. */
-    BBHardware         robot   = new BBHardware();   // Use a Pushbot's hardware
+    HardwareTest robot       = new HardwareTest();   // Use a Pushbot's hardware
     private ElapsedTime     runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder

@@ -18,7 +18,17 @@ public class BBHardware{
     public DcMotor  spin        = null;
     public DcMotor  leftb       = null;
     public DcMotor  rightb      = null;
+    public Servo    lefthand        = null;
+    public Servo    righthand        = null;
 
+
+    public final static double LEFTHAND_HOME = 0.0;
+    public final static double LEFTHAND_MIN_RANGE  = 0.0;
+    public final static double LEFTHAND_MAX_RANGE  = 1.0;
+
+    public final static double RIGHTHAND_HOME = 0.0;
+    public final static double RIGHTHAND_MIN_RANGE  = 0.0;
+    public final static double RIGHTHAND_MAX_RANGE  = 1.0;
 
 
     HardwareMap hwMap  = null;
@@ -57,6 +67,9 @@ public class BBHardware{
 
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        lefthand = hwMap.servo.get("lefthand");
+        righthand = hwMap.servo.get("righthand");
 
 
     }

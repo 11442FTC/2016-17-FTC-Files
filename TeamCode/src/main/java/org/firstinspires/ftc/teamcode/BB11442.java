@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.Range;
 
 
 @TeleOp(name="BB11442", group="Test")
@@ -13,6 +14,10 @@ public class BB11442 extends OpMode {
 
     double left;
     double right;
+    double          lefthandPosition     = robot.LEFTHAND_HOME;
+    final double    LEFTHAND_SPEED      = 0.01 ;
+    double          righthandPosition     = robot.RIGHTHAND_HOME;
+    final double    RIGHTHAND_SPEED      = 0.01 ;
 
     @Override
     public void init() {
@@ -60,7 +65,21 @@ public class BB11442 extends OpMode {
             robot.leftb.setPower(0);
             robot.rightb.setPower(0);
         }
+        if (gamepad1.x)
+            lefthandPosition += LEFTHAND_SPEED;
+        else if (gamepad1.b)
+            lefthandPosition -= LEFTHAND_SPEED;
+
+        if (gamepad1.x)
+            righthandPosition += RIGHTHAND_SPEED;
+        else if (gamepad1.b)
+            righthandPosition -= RIGHTHAND_SPEED;
 
 
+        lefthandPosition  = Range.clip(lefthandPosition, robot.LEFTHAND_MIN_RANGE, robot.LEFTHAND_MAX_RANGE);
+        robot.lefthand.setPosition(lefthandPosition);
+
+        righthandPosition  = Range.clip(righthandPosition, robot.RIGHTHAND_MIN_RANGE, robot.RIGHTHAND_MAX_RANGE);
+        robot.righthand.setPosition(righthandPosition);
     }
 }
