@@ -86,7 +86,6 @@ public class AutoEncoderTest extends LinearOpMode {
         encoderDrive(DRIVE_SPEED, -24, -24, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
 
 
-
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
