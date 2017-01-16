@@ -16,6 +16,8 @@ public class BB11442 extends OpMode {
     double right;
     double lefthandPosition = robot.LEFTHAND_HOME;
     final double LEFTHAND_SPEED = 0.01;
+    double beaconPosition = robot.BEACON_HOME;
+    final double BEACON_SPEED = 0.01;
     private static boolean slidemoving = false;
 
     @Override
@@ -57,14 +59,21 @@ public class BB11442 extends OpMode {
         if (gamepad2.b) {
             robot.spin.setPower(-0.75);
         }
-        if (gamepad2.x) {
-            robot.spin.setPower(0);
-        }
 
         if (gamepad1.x) {
             lefthandPosition += LEFTHAND_SPEED;
-        } else if (gamepad1.b) {
+        }
+
+        else if (gamepad1.b) {
             lefthandPosition -= LEFTHAND_SPEED;
+        }
+
+        if (gamepad2.left_bumper) {
+            beaconPosition += BEACON_SPEED;
+        }
+
+        else if (gamepad2.right_bumper) {
+            beaconPosition -= BEACON_SPEED;
         }
 
         if (gamepad2.dpad_up) {
@@ -72,7 +81,6 @@ public class BB11442 extends OpMode {
             robot.flick.setTargetPosition(1560);
             robot.flick.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             robot.flick.setPower(-1);
-
         }
 
 

@@ -18,11 +18,16 @@ public class BBHardware{
     public DcMotor  spin        = null;
     public Servo    lefthand        = null;
     public DcMotor  flick;
+    public Servo    beacon      = null;
 
 
     public final static double LEFTHAND_HOME = 1.0;
     public final static double LEFTHAND_MIN_RANGE  = 0.0;
     public final static double LEFTHAND_MAX_RANGE  = 1.0;
+
+    public final static double BEACON_HOME = 0.5;
+    public final static double BEACON_MIN_RANGE  = 0.0;
+    public final static double BEACON_MAX_RANGE  = 1.0;
 
 
 
@@ -44,6 +49,9 @@ public class BBHardware{
         lift = hwMap.dcMotor.get("lift");
         spin = hwMap.dcMotor.get("spin");
 
+        lefthand = hwMap.servo.get("lefthand");
+        beacon   = hwMap.servo.get("beacon");
+
 
 
 
@@ -61,7 +69,6 @@ public class BBHardware{
         flick.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
-        lefthand = hwMap.servo.get("lefthand");
 
 
 
