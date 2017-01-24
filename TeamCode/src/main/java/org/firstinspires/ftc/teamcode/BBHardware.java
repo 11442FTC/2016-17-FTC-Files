@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode;
  * Created by laura.denney on 11/9/2016.
  */
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -25,7 +26,7 @@ public class BBHardware{
     public final static double LEFTHAND_MIN_RANGE  = 0.0;
     public final static double LEFTHAND_MAX_RANGE  = 1.0;
 
-    public final static double BEACON_HOME = 0.5;
+    public final static double BEACON_HOME = 0.7;
     public final static double BEACON_MIN_RANGE  = 0.0;
     public final static double BEACON_MAX_RANGE  = 1.0;
 
@@ -43,7 +44,8 @@ public class BBHardware{
 
         leftMotor   = hwMap.dcMotor.get("left");
         rightMotor  = hwMap.dcMotor.get("right");
-        leftMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
         flick  = hwMap.dcMotor.get("flick");
 
         lift = hwMap.dcMotor.get("lift");

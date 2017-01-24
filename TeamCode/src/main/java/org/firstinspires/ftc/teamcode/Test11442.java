@@ -76,7 +76,7 @@ public class Test11442 extends OpMode {
         arm = throttle - direction;
         arm = Range.clip(arm, -1, 1);
         arm = (float) scaleInput(arm);
-        robot.slide.setPower(arm);
+
 
 
     }

@@ -8,9 +8,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class HardwareTest{
 
 
-    public DcMotor  leftMotor   = null;
-    public DcMotor  rightMotor  = null;
-    public DcMotor  slide       = null;
+    public DcMotor  leftMotor;
+    public DcMotor  rightMotor;
+
 
 
 
