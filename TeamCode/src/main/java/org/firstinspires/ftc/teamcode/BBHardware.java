@@ -13,13 +13,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class BBHardware{
 
 
-    public DcMotor  leftMotor   = null;
-    public DcMotor  rightMotor  = null;
-    public DcMotor  lift        = null;
-    public DcMotor  spin        = null;
-    public Servo    lefthand        = null;
+    public DcMotor  leftMotor;
+    public DcMotor  rightMotor;
+    public DcMotor  lift;
+    public DcMotor  spin;
+    public Servo    lefthand;
     public DcMotor  flick;
-    public Servo    beacon      = null;
+    public Servo    beacon;
 
 
     public final static double LEFTHAND_HOME = 1.0;

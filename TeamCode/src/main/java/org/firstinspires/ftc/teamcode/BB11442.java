@@ -88,10 +88,11 @@ public class BB11442 extends OpMode {
         }
 
         if (gamepad2.dpad_up) {
+            robot.flick.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             robot.flick.setTargetPosition(-1560);
             //1 rotation = 1560 ticks
             robot.flick.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.flick.setPower(1);
+            robot.flick.setPower(-1);
         }
 
 
