@@ -47,6 +47,7 @@ public class BBHardware{
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         flick  = hwMap.dcMotor.get("flick");
+        flick.setDirection(DcMotorSimple.Direction.REVERSE);
 
         lift = hwMap.dcMotor.get("lift");
         spin = hwMap.dcMotor.get("spin");
