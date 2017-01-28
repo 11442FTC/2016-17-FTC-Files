@@ -22,6 +22,7 @@ public class BB11442 extends OpMode {
     @Override
     public void init() {
         robot.init(hardwareMap);
+        robot.flick.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     @Override
@@ -46,16 +47,19 @@ public class BB11442 extends OpMode {
         robot.leftMotor.setPower(left);
 
         if (gamepad1.dpad_up) {
-            robot.lift.setTargetPosition(-23400);
+            robot.lift.setTargetPosition(-21100);
             //1 rotation = 1560 ticks
             //15 rotations
             robot.lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.lift.setPower(0.75);
             slidemoving = true;
         }
+        if(!robot.lift.isBusy()){
+            robot.lift.setPower(0);
+        }
         if (gamepad1.dpad_down) {
             robot.lift.setPower(0.75);
-        } else if (slidemoving = false) {
+        } else if (slidemoving == false) {
             robot.lift.setPower(0);
         }
 
@@ -87,14 +91,13 @@ public class BB11442 extends OpMode {
             beaconPosition -= BEACON_SPEED;
         }
 
-        if (gamepad2.dpad_up) {
-            robot.flick.setPower(0.8);
-
-        }
-
-        else if (gamepad2.dpad_right){
+        if (gamepad2.x) {
             robot.flick.setPower(0);
         }
+        if (gamepad2.y) {
+            robot.flick.setPower(0.25);
+        }
+
 
 
 
@@ -103,6 +106,11 @@ public class BB11442 extends OpMode {
 
         beaconPosition = Range.clip(beaconPosition, robot.BEACON_MIN_RANGE, robot.BEACON_MAX_RANGE);
         robot.beacon.setPosition(beaconPosition);
+
+        telemetry.addData("Path0",  "Starting at %7d :%7d",
+                robot.flick.getCurrentPosition(),
+                robot.flick.getTargetPosition());
+        telemetry.update();
 
     }
 
