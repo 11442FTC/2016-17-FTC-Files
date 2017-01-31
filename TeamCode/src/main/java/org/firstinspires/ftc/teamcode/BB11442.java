@@ -22,7 +22,7 @@ public class BB11442 extends OpMode {
     @Override
     public void init() {
         robot.init(hardwareMap);
-        robot.flick.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.launch.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     @Override
@@ -91,11 +91,12 @@ public class BB11442 extends OpMode {
             beaconPosition -= BEACON_SPEED;
         }
 
-        if (gamepad2.x) {
-            robot.flick.setPower(0);
-        }
-        if (gamepad2.y) {
-            robot.flick.setPower(0.25);
+        if (gamepad2.dpad_up) {
+            robot.launch.setTargetPosition(robot.launch.getTargetPosition()+1600);
+            //1 rotation = 1560 ticks
+            robot.launch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.launch.setPower(0.1);
+
         }
 
 
@@ -107,10 +108,6 @@ public class BB11442 extends OpMode {
         beaconPosition = Range.clip(beaconPosition, robot.BEACON_MIN_RANGE, robot.BEACON_MAX_RANGE);
         robot.beacon.setPosition(beaconPosition);
 
-        telemetry.addData("Path0",  "Starting at %7d :%7d",
-                robot.flick.getCurrentPosition(),
-                robot.flick.getTargetPosition());
-        telemetry.update();
 
     }
 

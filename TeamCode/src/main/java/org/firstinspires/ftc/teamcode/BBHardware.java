@@ -18,7 +18,7 @@ public class BBHardware{
     public DcMotor  lift;
     public DcMotor  spin;
     public Servo    lefthand;
-    public DcMotor  flick;
+    public DcMotor  launch;
     public Servo    beacon;
 
 
@@ -46,8 +46,8 @@ public class BBHardware{
         rightMotor  = hwMap.dcMotor.get("right");
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        flick  = hwMap.dcMotor.get("flick");
-        flick.setDirection(DcMotorSimple.Direction.REVERSE);
+        launch  = hwMap.dcMotor.get("launch");
+        launch.setDirection(DcMotorSimple.Direction.REVERSE);
 
         lift = hwMap.dcMotor.get("lift");
         spin = hwMap.dcMotor.get("spin");
@@ -62,15 +62,15 @@ public class BBHardware{
         rightMotor.setPower(0);
         lift.setPower(0);
         spin.setPower(0);
-        flick.setPower(0);
+        launch.setPower(5);
 
 
 
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        flick.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+//        flick.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+launch.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
 
