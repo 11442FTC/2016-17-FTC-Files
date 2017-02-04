@@ -18,6 +18,7 @@ public class BB11442 extends OpMode {
     double beaconPosition = robot.BEACON_HOME;
     final double BEACON_SPEED = 0.01;
     private static boolean slidemoving = false;
+    private static boolean launchmoving = false;
 
     @Override
     public void init() {
@@ -47,11 +48,11 @@ public class BB11442 extends OpMode {
         robot.leftMotor.setPower(left);
 
         if (gamepad1.dpad_up) {
-            robot.lift.setTargetPosition(-21100);
+            robot.lift.setTargetPosition(41100);
             //1 rotation = 1560 ticks
             //15 rotations
             robot.lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.lift.setPower(0.75);
+            robot.lift.setPower(1);
             slidemoving = true;
         }
         if(!robot.lift.isBusy()){
@@ -95,11 +96,24 @@ public class BB11442 extends OpMode {
             robot.launch.setTargetPosition(robot.launch.getTargetPosition()+1600);
             //1 rotation = 1560 ticks
             robot.launch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.launch.setPower(0.1);
+            robot.launch.setPower(0.2);
+            launchmoving = true;
 
         }
 
+        if(!robot.launch.isBusy()){
+            robot.launch.setPower(0);
+        }
+        if (gamepad2.dpad_down) {
+            robot.launch.setPower(0);
+        } else if (launchmoving == false) {
+            robot.launch.setPower(0);
+        }
 
+        if (launchmoving && !robot.launch.isBusy()) {
+            robot.launch.setPower(0);
+            launchmoving = false;
+        }
 
 
         lefthandPosition = Range.clip(lefthandPosition, robot.LEFTHAND_MIN_RANGE, robot.LEFTHAND_MAX_RANGE);

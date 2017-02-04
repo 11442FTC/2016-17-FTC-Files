@@ -50,6 +50,7 @@ public class BBHardware{
         launch.setDirection(DcMotorSimple.Direction.REVERSE);
 
         lift = hwMap.dcMotor.get("lift");
+        lift.setDirection(DcMotorSimple.Direction.REVERSE);
         spin = hwMap.dcMotor.get("spin");
 
         lefthand = hwMap.servo.get("lefthand");
@@ -69,8 +70,7 @@ public class BBHardware{
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        flick.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-launch.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        launch.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
 
