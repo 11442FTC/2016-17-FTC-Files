@@ -39,7 +39,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class AutoEncoderTest extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareTest robot       = new HardwareTest();   // Use a Pushbot's hardware
+    BBHardware robot       = new BBHardware();   // Use a Pushbot's hardware
     private ElapsedTime     runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 560 ;    // eg: TETRIX Motor Encoder
@@ -63,11 +63,12 @@ public class AutoEncoderTest extends LinearOpMode {
         telemetry.addData("Status", "Resetting Encoders");    //
         telemetry.update();
 
-
+        robot.launch.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         idle();
 
+        robot.launch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -83,12 +84,13 @@ public class AutoEncoderTest extends LinearOpMode {
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
-        encoderDrive(DRIVE_SPEED,  10,  10, 2.0);  // S1: Forward 47 Inches with 5 Sec timeout
+        robot.launch.setTargetPosition(1650);
+        sleep(250);
+        encoderDrive(DRIVE_SPEED,  10,  10, 2.0);
 
 
 
-        telemetry.addData("Path", "Complete");
-        telemetry.update();
+
     }
 
     /*
@@ -139,13 +141,16 @@ public class AutoEncoderTest extends LinearOpMode {
                 idle();
             }
 
+
             // Stop all motion;
             robot.leftMotor.setPower(0);
             robot.rightMotor.setPower(0);
+            robot.launch.setPower(0);
 
             // Turn off RUN_TO_POSITION
             robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.launch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             //  sleep(250);   // optional pause after each move
         }

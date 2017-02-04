@@ -17,8 +17,8 @@ public class BB11442 extends OpMode {
     final double LEFTHAND_SPEED = 0.01;
     double beaconPosition = robot.BEACON_HOME;
     final double BEACON_SPEED = 0.01;
-    private static boolean slidemoving = false;
-    private static boolean launchmoving = false;
+
+
 
     @Override
     public void init() {
@@ -48,25 +48,23 @@ public class BB11442 extends OpMode {
         robot.leftMotor.setPower(left);
 
         if (gamepad1.dpad_up) {
-            robot.lift.setTargetPosition(41100);
+            robot.lift.setTargetPosition(23400);
             //1 rotation = 1560 ticks
             //15 rotations
             robot.lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.lift.setPower(1);
-            slidemoving = true;
+            robot.lift.setPower(0.75);
+
         }
         if(!robot.lift.isBusy()){
             robot.lift.setPower(0);
         }
         if (gamepad1.dpad_down) {
             robot.lift.setPower(0.75);
-        } else if (slidemoving == false) {
-            robot.lift.setPower(0);
         }
-
-        if (slidemoving && !robot.lift.isBusy()) {
-            robot.lift.setPower(0);
-            slidemoving = false;
+        if(gamepad1.dpad_left){
+            robot.lift.setTargetPosition(robot.lift.getTargetPosition() + 1190);
+            robot.lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.lift.setPower(0.75);
         }
 
         if (gamepad2.a) {
@@ -96,8 +94,7 @@ public class BB11442 extends OpMode {
             robot.launch.setTargetPosition(robot.launch.getTargetPosition()+1600);
             //1 rotation = 1560 ticks
             robot.launch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.launch.setPower(0.2);
-            launchmoving = true;
+            robot.launch.setPower(0.1);
 
         }
 
@@ -106,13 +103,7 @@ public class BB11442 extends OpMode {
         }
         if (gamepad2.dpad_down) {
             robot.launch.setPower(0);
-        } else if (launchmoving == false) {
-            robot.launch.setPower(0);
-        }
 
-        if (launchmoving && !robot.launch.isBusy()) {
-            robot.launch.setPower(0);
-            launchmoving = false;
         }
 
 
