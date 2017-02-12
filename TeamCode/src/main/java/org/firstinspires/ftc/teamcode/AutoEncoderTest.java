@@ -47,8 +47,8 @@ public class AutoEncoderTest extends LinearOpMode {
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 0.6;
-    static final double     TURN_SPEED              = 0.5;
+    static final double     DRIVE_SPEED             = 0.1;
+    static final double     TURN_SPEED              = 0.1;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -81,12 +81,21 @@ public class AutoEncoderTest extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
+        robot.beacon.setPosition(0.2);
+        robot.spin.setPower(-0.75);
+        robot.launch.setTargetPosition(6240);
+        robot.launch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.launch.setPower(0.1);
+        sleep(10000);
+        robot.launch.setPower(0);
+        robot.spin.setPower(0);
+        encoderDrive(DRIVE_SPEED, -10, -10, 2.0);
 
-        robot.launch.setTargetPosition(1650);
-        sleep(250);
-        encoderDrive(DRIVE_SPEED,  10,  10, 2.0);
+
+
 
 
 
@@ -145,12 +154,12 @@ public class AutoEncoderTest extends LinearOpMode {
             // Stop all motion;
             robot.leftMotor.setPower(0);
             robot.rightMotor.setPower(0);
-            robot.launch.setPower(0);
+
 
             // Turn off RUN_TO_POSITION
             robot.leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.launch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
             //  sleep(250);   // optional pause after each move
         }
