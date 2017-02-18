@@ -34,9 +34,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Pushbot: shooterAuto", group="Test")
+@Autonomous(name="Pushbot: blueAuto", group="Test")
 
-public class AutoEncoderTest extends LinearOpMode {
+public class BlueAuto extends LinearOpMode {
 
     /* Declare OpMode members. */
     BBHardware robot       = new BBHardware();   // Use a Pushbot's hardware
@@ -47,8 +47,8 @@ public class AutoEncoderTest extends LinearOpMode {
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 0.1;
-    static final double     TURN_SPEED              = 0.1;
+    static final double     DRIVE_SPEED             = 0.5;
+    static final double     TURN_SPEED              = 0.5;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -93,6 +93,9 @@ public class AutoEncoderTest extends LinearOpMode {
         sleep(10000);
         robot.launch.setPower(0);
         robot.spin.setPower(0);
+        encoderDrive(DRIVE_SPEED, -41, -41, 3);
+        encoderDrive(DRIVE_SPEED, 10, -10, 1);
+        encoderDrive(DRIVE_SPEED, -30, -30, 4);
 
 
 

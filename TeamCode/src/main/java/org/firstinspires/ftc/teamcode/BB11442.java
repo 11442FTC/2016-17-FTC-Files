@@ -48,7 +48,7 @@ public class BB11442 extends OpMode {
         robot.leftMotor.setPower(left);
 
         if (gamepad1.dpad_up) {
-            robot.lift.setTargetPosition(23400);
+            robot.lift.setTargetPosition(25480);
             //1 rotation = 1560 ticks
             //15 rotations
             robot.lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
