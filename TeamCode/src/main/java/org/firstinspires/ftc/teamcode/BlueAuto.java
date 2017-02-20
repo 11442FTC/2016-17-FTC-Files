@@ -47,8 +47,8 @@ public class BlueAuto extends LinearOpMode {
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 0.5;
-    static final double     TURN_SPEED              = 0.5;
+    static final double     DRIVE_SPEED             = 0.4;
+    static final double     TURN_SPEED              = 0.4;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -93,9 +93,11 @@ public class BlueAuto extends LinearOpMode {
         sleep(10000);
         robot.launch.setPower(0);
         robot.spin.setPower(0);
-        encoderDrive(DRIVE_SPEED, -41, -41, 3);
-        encoderDrive(DRIVE_SPEED, 10, -10, 1);
-        encoderDrive(DRIVE_SPEED, -30, -30, 4);
+        encoderDrive(DRIVE_SPEED, -35, -35, 1.5);
+        encoderDrive(TURN_SPEED, -10, 5, 0.5);
+        encoderDrive(DRIVE_SPEED, -25, -25, 4);
+        encoderDrive(DRIVE_SPEED, -15, 25, 3);
+
 
 
 
