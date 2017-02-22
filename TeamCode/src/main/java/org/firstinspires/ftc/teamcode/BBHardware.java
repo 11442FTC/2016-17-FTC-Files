@@ -21,6 +21,7 @@ public class BBHardware{
     public DcMotor  launch;
     public Servo    beacon;
 
+    public colorSensor colorSensors;
 
     public final static double LEFTHAND_HOME = 1.0;
     public final static double LEFTHAND_MIN_RANGE  = 0.0;
@@ -39,6 +40,13 @@ public class BBHardware{
 
     }
     public void init(HardwareMap ahwMap) {
+
+        int[] ports = {0, 1,2};
+        int milliSeconds = 48;
+        colorSensors = new colorSensor(ahwMap, "mux", "ada",
+                ports, milliSeconds,
+                colorSensor.GAIN_16X);
+
 
         hwMap = ahwMap;
 

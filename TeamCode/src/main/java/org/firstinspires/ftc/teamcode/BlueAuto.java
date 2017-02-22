@@ -49,6 +49,7 @@ public class BlueAuto extends LinearOpMode {
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.4;
     static final double     TURN_SPEED              = 0.4;
+    private boolean  line = false;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -96,7 +97,39 @@ public class BlueAuto extends LinearOpMode {
         encoderDrive(DRIVE_SPEED, -35, -35, 1.5);
         encoderDrive(TURN_SPEED, -10, 5, 0.5);
         encoderDrive(DRIVE_SPEED, -25, -25, 4);
-        encoderDrive(DRIVE_SPEED, -15, 25, 3);
+        encoderDrive(DRIVE_SPEED, 25, -15, 5);
+
+
+        while (line == false) {
+            int[] left = robot.colorSensors.getCRGB(1);
+            int[] right = robot.colorSensors.getCRGB(2);
+
+//CHANGE THIS (set this to robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR) when you start the robot)
+            int value = 2000;//what is the value of the light sensor that signifys that it is on the line
+
+//both are off line
+            if (left[0] < value && right[0] < value) {
+                robot.leftMotor.setPower(0.1);
+                robot.rightMotor.setPower(0.1);
+
+//left is on line
+            } else if (left[0] > value && right[0] < value) {
+                robot.leftMotor.setPower(0);
+                robot.rightMotor.setPower(0.3);
+
+//right is on line
+            } else if (left[0] > value && right[0] < value) {
+                robot.leftMotor.setPower(0.3);
+                robot.rightMotor.setPower(0);
+
+//both on line
+            } else if (left[0] > value && right[0] > value) {
+                robot.leftMotor.setPower(0);
+                robot.rightMotor.setPower(0);
+                //should stop line following if the code reaches this point
+                line = true;
+            }
+        }
 
 
 
