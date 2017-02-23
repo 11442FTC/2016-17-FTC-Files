@@ -91,35 +91,36 @@ public class BlueAuto extends LinearOpMode {
         robot.launch.setTargetPosition(6240);
         robot.launch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.launch.setPower(0.1);
-        sleep(10000);
+        sleep(10000);   //wait 10s while particles are shot
         robot.launch.setPower(0);
         robot.spin.setPower(0);
-        encoderDrive(DRIVE_SPEED, -35, -35, 1.5);
-        encoderDrive(TURN_SPEED, -10, 5, 0.5);
-        encoderDrive(DRIVE_SPEED, -25, -25, 4);
-        encoderDrive(DRIVE_SPEED, 25, -15, 5);
+        encoderDrive(DRIVE_SPEED, -35, -35, 1.3); //approach center vortex
+        encoderDrive(TURN_SPEED, -10, 5, 0.5);   //turn right to face beacon wall
+        encoderDrive(DRIVE_SPEED, -25, -25, 3);  //approach beacon wall
+        encoderDrive(DRIVE_SPEED, 15, -5, 2);  //turn
+        encoderDrive(0.2, -5, -5, 1);  //drive forward to line
 
 
         while (line == false) {
             int[] left = robot.colorSensors.getCRGB(1);
-            int[] right = robot.colorSensors.getCRGB(2);
+            int[] right = robot.colorSensors.getCRGB(0);
 
 //CHANGE THIS (set this to robot.colorSensors.getCRGB(Constants.Robot.RIGHT_COLOR) when you start the robot)
-            int value = 2000;//what is the value of the light sensor that signifys that it is on the line
+            int value = 10000;//what is the value of the light sensor that signifys that it is on the line
 
 //both are off line
             if (left[0] < value && right[0] < value) {
-                robot.leftMotor.setPower(0.1);
-                robot.rightMotor.setPower(0.1);
+                robot.leftMotor.setPower(-0.1);
+                robot.rightMotor.setPower(-0.1);
 
 //left is on line
             } else if (left[0] > value && right[0] < value) {
                 robot.leftMotor.setPower(0);
-                robot.rightMotor.setPower(0.3);
+                robot.rightMotor.setPower(-0.3);
 
 //right is on line
-            } else if (left[0] > value && right[0] < value) {
-                robot.leftMotor.setPower(0.3);
+            } else if (left[0] < value && right[0] > value) {
+                robot.leftMotor.setPower(-0.3);
                 robot.rightMotor.setPower(0);
 
 //both on line

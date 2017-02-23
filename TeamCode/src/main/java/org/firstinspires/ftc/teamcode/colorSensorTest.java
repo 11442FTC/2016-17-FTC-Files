@@ -15,7 +15,7 @@ package org.firstinspires.ftc.teamcode;
 public class colorSensorTest extends OpMode
 {
     colorSensor muxColor;
-    int[] ports = {0, 3};
+    int[] ports = {0, 1, 2};
 
     @Override
     public void init() {
